@@ -1,0 +1,20 @@
+docker ps -a
+docker inspect container_name
+docker diff container_name
+docker logs container_name
+docker rm container_name
+
+# remove all stoped containers 
+docker rm -v $(docker ps -aq -f status=exited)
+
+#launch a container from image debian
+docker run --name container_name --hostname container_name debian /bin/bash
+
+# launch ssh in container cowsay
+docker run -it cowsay /bin/bash
+
+# Turn container into an image. image name is cowssayimage, stored in test repository
+docker commit cowsay test/cowsayimage
+
+# run commands from image 
+docker run test/cowsayimage echo "Hello world" 
