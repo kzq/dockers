@@ -7,6 +7,9 @@ docker rm container_name
 # remove all stoped containers 
 docker rm -v $(docker ps -aq -f status=exited)
 
+# Delete all images
+docker rmi $(docker images -aq)
+
 #launch a container from image debian
 docker run --name container_name --hostname container_name debian /bin/bash
 
@@ -18,3 +21,7 @@ docker commit cowsay test/cowsayimage
 
 # run commands from image 
 docker run test/cowsayimage echo "Hello world" 
+
+#run container in background
+
+docker run --name myredis -d redis
